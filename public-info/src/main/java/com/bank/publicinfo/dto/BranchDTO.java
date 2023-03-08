@@ -1,0 +1,42 @@
+package com.bank.publicinfo.dto;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.*;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+
+/**
+ * Класс BranchDTO — это объект передачи данных (DTO),
+ * представляющий информацию об отделении банка.
+ *
+ * @author Semushkin Danila
+ * @version 1.0
+ * @since 15.02.2023
+ */
+
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@Schema(description = "Информация об отделении")
+public class BranchDTO {
+    @Schema(description = "Адрес отделения")
+    @NotNull
+    @NotBlank
+    private String address;
+    @Schema(description = "Номер телефона отделения")
+    private Long phoneNumber;
+    @Schema(description = "Город, в котором расположено отделение")
+    @NotNull
+    @NotBlank
+    private String city;
+    @Schema(description = "Начало работы отделения")
+    @NotNull
+    private LocalDateTime startOfWork;
+    @Schema(description = "Конец работы отделения")
+    @NotNull
+    private LocalDateTime endOfWork;
+}

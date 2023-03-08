@@ -1,0 +1,35 @@
+server:
+  port: 8092
+  servlet:
+    context-path: /api/transfer
+management:
+  server:
+    port: 8191
+  endpoint:
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: mihail
+    password: Lalka000
+  liquibase:
+    default-schema: transfer
+    change-log: db/changelog/db.changelog-master.yaml
+    enabled: true
+    drop-first: false
+  application:
+    name: transfer-app
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8081/eureka
+
+

@@ -1,0 +1,41 @@
+server:
+  port: 8086
+  servlet:
+    context-path: /api/anti-fraud
+management:
+  server:
+    port: 8186
+  endpoint:
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: password
+  liquibase:
+    default-schema: anti_fraud
+    change-log: db/changelog/db.changelog-master.yaml
+    enabled: ${LIQUIBASE_ENABLED:true}
+    drop-first: ${LIQUIBASE_DROP_FIRST:false}
+  application:
+    name: anti-fraud-app
+    mvc:
+      pathmatch:
+        matching-strategy: ant_path_matcher
+      jpa:
+        properties:
+          hibernate:
+            dialect: org.hibernate.dialect.PostgreSQLDialect
+            hbm2ddl:
+              auto: none
+            show_sql: true
+            format_sql: true
+    logging:
+      level:
+        org.hibernate.SQL: DEBUG
+        org.hibernate.type.descriptor.sql: TRACE
